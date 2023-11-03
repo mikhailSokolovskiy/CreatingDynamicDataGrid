@@ -1,0 +1,86 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:studying.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="studying.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="studying">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    
+    <!-- <Grid> -->
+    <!--     <Menu Grid.Row="0" Grid.ColumnSpan="2"> -->
+    <!--         <MenuItem Header="{Binding ElementName=MyTextBox,Path=Text, Mode=TwoWay}"> -->
+    <!--             <MenuItem x:Name="Open" Header="open..."/> -->
+    <!--             <Separator/> -->
+    <!--             <MenuItem Header="_Exit"/> -->
+    <!--         </MenuItem> -->
+    <!--         <MenuItem Header="_Edit"> -->
+    <!--             <MenuItem Header="Copy"/> -->
+    <!--             <MenuItem Header="Paste"/> -->
+    <!--         </MenuItem> -->
+    <!--     </Menu> -->
+    <!--     <Grid.ColumnDefinitions> -->
+    <!--         <ColumnDefinition></ColumnDefinition> -->
+    <!--         <ColumnDefinition></ColumnDefinition> -->
+    <!--     </Grid.ColumnDefinitions> -->
+    <!--     <Grid.RowDefinitions> -->
+    <!--         <RowDefinition></RowDefinition> -->
+    <!--         <RowDefinition></RowDefinition> -->
+    <!--         <RowDefinition></RowDefinition> -->
+    <!--     </Grid.RowDefinitions> -->
+    <!--     <StackPanel Name="sp" Background="Aqua" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"> -->
+    <!--         <TextBox x:Name="MyTextBox" Width="120"></TextBox> -->
+    <!--         <TextBox Width="120"></TextBox> -->
+    <!--         <TextBox Width="120"></TextBox> -->
+    <!--     </StackPanel> -->
+    <!--     <DataGrid Background="Brown" Grid.Row="1" Grid.Column="0"> -->
+    <!--          -->
+    <!--     </DataGrid> -->
+    <!--     <Button Grid.Row="4" -->
+    <!--             Content="Write Greeting" -->
+    <!--             Command="{Binding WriteGreetingReactiveCommand}"/> -->
+    <!--     <Button Grid.Row="5" -->
+    <!--             Content="Generic Greeting" -->
+    <!--             Command="{Binding WriteGreeting}" -->
+    <!--             CommandParameter="User" -->
+    <!--             IsEnabled="{Binding #AllowedGreeting.IsChecked}" /> -->
+    <!-- </Grid> -->
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="0" Grid.Column="0" Content="Add New Row" Margin="5" Command="{Binding AddNewRow}"/>
+        <DataGrid Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black" VerticalScrollBarVisibility="Visible" Height="450" ItemsSource="{Binding DynamicTable}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" 
+                                    Binding="{Binding FirstName}" 
+                                    Width="2*" />
+                <DataGridTextColumn Header="Last Name" 
+                                    Binding="{Binding LastName}" 
+                                    Width="2*" />
+                <DataGridTextColumn Header="Department" 
+                                    Binding="{Binding DepartmentNumber}" 
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+            
+        </StackPanel>
+    </Grid>
+</Window>
