@@ -64,23 +64,30 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Button Content="Add New Row" Margin="5" Command="{Binding AddNewRow}"/>
+            <Button Content="autonum" Command="{Binding AutoNum}"></Button>
+        </StackPanel>
         
-        <Button Grid.Row="0" Grid.Column="0" Content="Add New Row" Margin="5" Command="{Binding AddNewRow}"/>
+
         <DataGrid Grid.Row="1" Grid.Column="0" BorderThickness="1" BorderBrush="Black" VerticalScrollBarVisibility="Visible" Height="450" ItemsSource="{Binding DynamicTable}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="First Name" 
-                                    Binding="{Binding FirstName}" 
+                                    Binding="{Binding FirstName, Mode=TwoWay}" 
                                     Width="2*" />
                 <DataGridTextColumn Header="Last Name" 
                                     Binding="{Binding LastName}" 
                                     Width="2*" />
-                <DataGridTextColumn Header="Department" 
-                                    Binding="{Binding DepartmentNumber}" 
-                                    Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-            
-        </StackPanel>
+        <ItemsControl Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" ItemsSource="{Binding DynamicTable}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBox Text="{Binding FirstName, Mode=TwoWay }" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Window>
